@@ -1,4 +1,4 @@
-package com.example.demo.sys.services;
+package com.example.demo.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
