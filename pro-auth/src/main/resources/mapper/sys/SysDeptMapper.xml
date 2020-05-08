@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.sys.mapper.SysDeptMapper">
 
+
+    <select id="getDeptPageByDeptName" resultType="com.example.demo.sys.vo.DeptPageVo">
+        SELECT
+        d.`id`,
+        d.`name`,
+        d.`order_num`,
+        d.`create_time`,
+        u.`name` AS createBy
+        FROM
+        sys_dept d
+        LEFT JOIN sys_user u
+        ON d.create_by = u.id
+        <where>
+            and d.delete_flag=0
+            and d.name like CONCAT('%',#{deptName},'%')
+        </where>
+    </select>
     
 
 </mapper>

@@ -15,7 +15,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private ISysUserService sysUserService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("1111"+username);
         JwtUser user=sysUserService.getUserByUsername(username);
         return user;
     }

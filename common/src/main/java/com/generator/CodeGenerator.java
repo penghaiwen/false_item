@@ -72,7 +72,7 @@ public class CodeGenerator {
         }
         String projectPath = System.getProperty("user.dir") + packagePath;
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("车资道科技");
+        gc.setAuthor("老默");
         gc.setOpen(false);
         gc.setSwagger2(true);
         gc.setIdType(IdType.AUTO);
