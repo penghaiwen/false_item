@@ -3,6 +3,7 @@ package com.example.demo.sys.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -48,4 +49,7 @@ public class MenuTreeVo {
 
     @ApiModelProperty(value = "子菜单")
     private List<MenuTreeVo> children;
+    {
+        children=  new ArrayList<>();
+    }
 }

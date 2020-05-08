@@ -1,10 +1,12 @@
 package com.example.demo.sys.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.sys.entity.SysRoleMenu;
 import com.example.demo.sys.mapper.SysRoleMenuMapper;
 import com.example.demo.sys.service.ISysRoleMenuService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
 
+    @Override
+    public boolean saveBatchRoleMenu(Long roleId, List<Long> menuIds) {
+        // 先删除该角色下所有拥有的菜单
+        baseMapper.deleteAllByRoleId(roleId);
+        baseMapper.saveAllPerms(roleId, menuIds);
+        return true;
+    }
 }
