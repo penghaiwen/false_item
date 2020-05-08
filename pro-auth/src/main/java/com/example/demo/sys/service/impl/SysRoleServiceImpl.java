@@ -41,7 +41,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         role.setId(dto.getId());
         role.setName(dto.getRoleName());
         boolean b = this.saveOrUpdate(role);
-        sysRoleMenuService.saveBatchRoleMenu(role.getId(),dto.getMenuIds());
+        if(null !=dto.getMenuIds()&&!dto.getMenuIds().isEmpty()){
+            sysRoleMenuService.saveBatchRoleMenu(role.getId(),dto.getMenuIds());
+        }
         return b;
     }
 }
