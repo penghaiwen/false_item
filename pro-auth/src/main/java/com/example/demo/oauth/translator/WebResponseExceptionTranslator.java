@@ -38,7 +38,7 @@ public class WebResponseExceptionTranslator implements org.springframework.secur
             if (StringUtils.containsIgnoreCase(e.getMessage(), "Invalid refresh token")) {
 
                 message = "登录已过期，请重新登录";
-                return status.body(RestBean.error(10101, message));
+                return status.body(RestBean.error(401, message));
             }
             if (StringUtils.containsIgnoreCase(e.getMessage(), "locked")) {
                 message = "用户已被锁定，请联系管理员";

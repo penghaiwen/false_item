@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.sys.mapper.SysMenuMapper">
+
+    <select id="getAllMenu" resultType="com.example.demo.sys.vo.MenuTreeVo">
+        select * from  sys_menu where delete_flag = 0
+    </select>
+
+
+    <select id="getRouterTree" resultType="com.example.demo.sys.vo.RouterVO">
+        SELECT
+          id,
+          parent_id,
+          menu_icon AS icon,
+          menu_name AS NAME,
+          menu_level AS menuLevel,
+          menu_url as path,
+          menu_path AS component,
+          menu_title AS title,
+          keep_alive AS noCache
+        FROM
+          sys_menu
+        WHERE delete_flag = 0
+          AND is_show = 1
+        ORDER BY menu_sort ASC
+    </select>
+</mapper>

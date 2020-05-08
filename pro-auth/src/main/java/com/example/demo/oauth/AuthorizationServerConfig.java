@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 
@@ -28,6 +29,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     WebResponseExceptionTranslator webResponseExceptionTranslator;
 
+    @Autowired(required = false)
+    TokenStore inMemoryTokenStore;
     // 指定密码的加密方式
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -42,8 +45,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //授权同意的类型
                 .authorizedGrantTypes("password", "refresh_token")
                 //有效时间
-                .accessTokenValiditySeconds(60 * 60 * 2)
-                .refreshTokenValiditySeconds(60 * 60 * 2)
+                .accessTokenValiditySeconds(60 * 60 * 1)
+                .refreshTokenValiditySeconds(60 * 60 * 1)
                 .resourceIds("rid")
                 //作用域，范围
                 .scopes("all")
@@ -55,9 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        InMemoryTokenStore tokenStore = new InMemoryTokenStore();
-
-        endpoints.tokenStore(tokenStore)
+        endpoints.tokenStore(inMemoryTokenStore)
                 //身份验证管理
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)

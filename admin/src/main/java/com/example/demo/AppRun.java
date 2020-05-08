@@ -1,4 +1,4 @@
-package com.example.domo;
+package com.example.demo;
 
 
 import org.springframework.boot.SpringApplication;

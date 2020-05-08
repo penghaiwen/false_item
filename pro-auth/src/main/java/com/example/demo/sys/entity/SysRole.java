@@ -18,7 +18,7 @@ package com.example.demo.sys.entity;
 
 /**
 * <p>
-    * 用户
+    * 角色
     * </p>
 *
 * @author 老默
@@ -27,9 +27,9 @@ package com.example.demo.sys.entity;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
-@ApiModel(value="SysUser对象", description="用户")
-public class SysUser extends Model<SysUser> {
+@TableName("sys_role")
+@ApiModel(value="SysRole对象", description="角色")
+public class SysRole extends Model<SysRole> {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,26 +37,11 @@ public class SysUser extends Model<SysUser> {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "角色名称")
     private String name;
 
-    @ApiModelProperty(value = "密码")
-    private String password;
-
-    @ApiModelProperty(value = "用户类型")
-    private Integer userType;
-
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-
-    @ApiModelProperty(value = "手机号")
-    private String mobile;
-
-    @ApiModelProperty(value = "状态  0：禁用   1：正常")
-    private Integer status;
-
-    @ApiModelProperty(value = "机构ID")
-    private Long deptId;
+    @ApiModelProperty(value = "备注")
+    private String remark;
 
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)

@@ -50,7 +50,9 @@ public class RestBean implements Serializable {
     public static RestBean ok(String msg) {
         return new RestBean(0, msg, null);
     }
-
+    public static RestBean ok() {
+        return new RestBean(0, "处理成功", null);
+    }
     public static RestBean ok(Object data) {
         return new RestBean(0, null, data);
     }

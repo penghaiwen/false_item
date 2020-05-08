@@ -18,18 +18,18 @@ package com.example.demo.sys.entity;
 
 /**
 * <p>
-    * 用户
+    * 机构管理
     * </p>
 *
-* @author 老默
+* @author 车资道科技
 * @since 2020-04-30
 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
-@ApiModel(value="SysUser对象", description="用户")
-public class SysUser extends Model<SysUser> {
+@TableName("sys_dept")
+@ApiModel(value="SysDept对象", description="机构管理")
+public class SysDept extends Model<SysDept> {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,26 +37,14 @@ public class SysUser extends Model<SysUser> {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "机构名称")
     private String name;
 
-    @ApiModelProperty(value = "密码")
-    private String password;
+    @ApiModelProperty(value = "上级机构ID，一级机构为0")
+    private Long parentId;
 
-    @ApiModelProperty(value = "用户类型")
-    private Integer userType;
-
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-
-    @ApiModelProperty(value = "手机号")
-    private String mobile;
-
-    @ApiModelProperty(value = "状态  0：禁用   1：正常")
-    private Integer status;
-
-    @ApiModelProperty(value = "机构ID")
-    private Long deptId;
+    @ApiModelProperty(value = "排序")
+    private Integer orderNum;
 
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)
@@ -67,10 +55,12 @@ public class SysUser extends Model<SysUser> {
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新人")
-    private String lastUpdateBy;
+    @TableField(fill = FieldFill.UPDATE)
+    private String updateBy;
 
     @ApiModelProperty(value = "更新时间")
-    private LocalDateTime lastUpdateTime;
+    @TableField(fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "是否删除  -1：已删除  0：正常")
     @TableLogic

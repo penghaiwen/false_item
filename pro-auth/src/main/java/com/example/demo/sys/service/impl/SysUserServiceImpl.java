@@ -29,7 +29,6 @@ public class SysUserServiceImpl  extends ServiceImpl<SysUserMapper, SysUser> imp
         SysUser user= baseMapper.getUserByUsername(userName);
         JwtUser jwtUser =new JwtUser();
         BeanUtils.copyProperties(user,jwtUser);
-        jwtUser.setPassword(new BCryptPasswordEncoder().encode(user.getPwd()));
         return jwtUser;
     }
 }
