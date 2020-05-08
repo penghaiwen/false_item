@@ -4,5 +4,13 @@
     <select id="getUserByUsername" resultType="com.example.demo.sys.entity.SysUser">
         select * from sys_user where name=#{userName} limit 1
     </select>
-
+    <select id="getUserPageVo" resultType="com.example.demo.sys.vo.UserPageVo">
+        select * from sys_user u
+        <where>
+            and u.delete_flag = 0
+            <if test="userName !=null and userName != ''">
+                and u.name like CONCAT('%',#{userName},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

@@ -43,7 +43,7 @@ public class SysUser extends Model<SysUser> {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value = "用户类型")
+    @ApiModelProperty(value = "用户类型（0 管理员 1专员）")
     private Integer userType;
 
     @ApiModelProperty(value = "邮箱")
@@ -60,17 +60,19 @@ public class SysUser extends Model<SysUser> {
 
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)
-    private String createBy;
+    private Long createBy;
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新人")
-    private String lastUpdateBy;
+    @TableField(fill = FieldFill.UPDATE)
+    private Long updateBy;
 
     @ApiModelProperty(value = "更新时间")
-    private LocalDateTime lastUpdateTime;
+    @TableField(fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "是否删除  -1：已删除  0：正常")
     @TableLogic
