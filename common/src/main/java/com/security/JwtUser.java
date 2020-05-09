@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 
@@ -27,6 +26,16 @@ public class JwtUser implements UserDetails {
      */
     private String nickname;
 
+    /**
+     * 用户类型
+     */
+    private Integer userType;
+
+
+    /**
+     * 机构id
+     */
+    private Long deptId;
 
     /**
      * 继承属性

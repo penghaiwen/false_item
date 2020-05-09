@@ -4,6 +4,8 @@ import com.example.demo.sys.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.sys.vo.MenuTreeVo;
 import com.example.demo.sys.vo.RouterVO;
+import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
 
@@ -36,5 +38,5 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @param
      * @return java.util.List<com.example.demo.sys.vo.RouterVO>
      */
-    List<RouterVO> getRouterTree();
+    List<RouterVO> getRouterTree(@Param("userId") Long userId);
 }

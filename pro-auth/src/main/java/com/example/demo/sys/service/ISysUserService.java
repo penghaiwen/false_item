@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dto.PageDTO;
 import com.example.demo.sys.dto.UserSaveDto;
 import com.example.demo.sys.entity.SysUser;
+import com.example.demo.sys.vo.UserInfoVo;
 import com.example.demo.sys.vo.UserPageVo;
 import com.security.JwtUser;
 
@@ -37,4 +38,14 @@ public interface ISysUserService extends IService<SysUser> {
      * @return boolean
      */
     boolean saveUser(UserSaveDto dto);
+
+    /**
+     *功能描述 
+     * @author 老默
+     * @date 2020/5/9
+     * @time 17:56
+     * @param id 
+     * @return com.example.demo.sys.vo.UserInfoVo
+     */
+    UserInfoVo getUserInfoByUserId(Long id);
 }

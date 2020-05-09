@@ -7,6 +7,7 @@ import com.example.demo.sys.dto.UserSaveDto;
 import com.example.demo.sys.entity.SysUser;
 import com.example.demo.sys.mapper.SysUserMapper;
 import com.example.demo.sys.service.ISysUserService;
+import com.example.demo.sys.vo.UserInfoVo;
 import com.example.demo.sys.vo.UserPageVo;
 import com.exception.RestException;
 import com.security.JwtUser;
@@ -28,6 +29,7 @@ public class SysUserServiceImpl  extends ServiceImpl<SysUserMapper, SysUser> imp
         }
         JwtUser jwtUser =new JwtUser();
         BeanUtils.copyProperties(user,jwtUser);
+        jwtUser.setUsername(user.getAccount());
         return jwtUser;
     }
 
@@ -57,5 +59,10 @@ public class SysUserServiceImpl  extends ServiceImpl<SysUserMapper, SysUser> imp
             baseMapper.saveBatchUserRole(user.getId(),dto.getRoleIds());
         }
         return b;
+    }
+
+    @Override
+    public UserInfoVo getUserInfoByUserId(Long id) {
+        return baseMapper.getUserInfoByUserId(id);
     }
 }

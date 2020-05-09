@@ -40,4 +40,17 @@
             (#{userId}, #{item})
         </foreach>
     </insert>
+
+    <select id="getUserInfoByUserId" resultType="com.example.demo.sys.vo.UserInfoVo">
+        SELECT
+          u.id,
+          u.`account` AS userName,
+          u.`nick_name`,
+          GROUP_CONCAT(ur.`role_id`) AS roleStr
+        FROM
+          sys_user u
+          LEFT JOIN sys_user_role ur
+            ON u.id = ur.`user_id`
+        WHERE u.id = #{id}
+    </select>
 </mapper>

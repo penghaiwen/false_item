@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.sys.vo.MenuTreeVo;
 import com.example.demo.sys.vo.MetaVO;
 import com.example.demo.sys.vo.RouterVO;
+import com.utils.SubjectUtil;
 import com.utils.ToTreeUtils;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public List<RouterVO> getRouterTree() {
-        List<RouterVO> all = baseMapper.getRouterTree();
+        System.out.println(SubjectUtil.getUserType());
+        List<RouterVO> all = baseMapper.getRouterTree(SubjectUtil.getUserType()==0?null:SubjectUtil.getId());
         all.forEach(a->{
             a.setMeta(new MetaVO(a.getTitle(),a.getIcon(),a.getNoCache()));
             if(a.getMenuLevel()==1){

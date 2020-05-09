@@ -9,19 +9,31 @@
 
     <select id="getRouterTree" resultType="com.example.demo.sys.vo.RouterVO">
         SELECT
-          id,
-          parent_id,
-          menu_icon AS icon,
-          menu_name AS NAME,
-          menu_level AS menuLevel,
-          menu_url as path,
-          menu_path AS component,
-          menu_title AS title,
-          keep_alive AS noCache
+          m.id,
+          m.parent_id,
+          m.menu_icon AS icon,
+          m.menu_name AS NAME,
+          m.menu_level AS menuLevel,
+          m.menu_url AS path,
+          m.menu_path AS component,
+          m.menu_title AS title,
+          m.keep_alive AS noCache
         FROM
-          sys_menu
-        WHERE delete_flag = 0
-          AND is_show = 1
-        ORDER BY menu_sort ASC
+          sys_menu m
+          <if test="userId!=null">
+              LEFT JOIN sys_role_menu rm
+              ON m.`id` = rm.`menu_id`
+              LEFT JOIN sys_user_role ur
+              ON rm.`role_id` = ur.`role_id`
+              LEFT JOIN sys_role r
+              ON ur.`role_id` = r.`id`
+          </if>
+        WHERE m.delete_flag = 0
+          AND m.is_show = 1
+          <if test="userId !=null">
+              AND ur.`user_id` = #{userId}
+              AND r.`delete_flag` = 0
+          </if>
+        ORDER BY m.menu_sort ASC
     </select>
 </mapper>

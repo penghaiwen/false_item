@@ -51,6 +51,15 @@ public class SubjectUtil {
         return getSubject().getUsername();
     }
 
+    /**
+     * 获取用户账号类型
+     *
+     * @return
+     */
+    public static  Integer getUserType(){
+        return getSubject().getUserType();
+    }
+
     
 
 }
