@@ -3,6 +3,7 @@ package com.example.demo.sys.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.sys.entity.SysRole;
+import com.example.demo.sys.vo.RoleAllVo;
 import com.example.demo.sys.vo.RolePageVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +29,15 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @return java.util.List<com.example.demo.sys.vo.RolePageVo>
      */
     List<RolePageVo> getRolePageListByRoleName(@Param("page")Page<RolePageVo> page,@Param("roleName") String roleName);
+
+
+    /**
+     *功能描述
+     * @author 老默
+     * @date 2020/5/9
+     * @time 9:52
+     * @param
+     * @return java.util.List<com.example.demo.sys.vo.RoleAllVo>
+     */
+    List<RoleAllVo> getRoleAll();
 }

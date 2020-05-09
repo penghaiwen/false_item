@@ -3,13 +3,21 @@ package com.example.demo.sys.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dto.PageDTO;
+import com.example.demo.sys.dto.UserSaveDto;
 import com.example.demo.sys.entity.SysUser;
 import com.example.demo.sys.vo.UserPageVo;
 import com.security.JwtUser;
 
 
 public interface ISysUserService extends IService<SysUser> {
-
+    /**
+     * @Author 老默
+     * @Description 获取登录信息
+     * @Date 2020/4/29 10:59
+     * @param: userName
+     * @return com.security.JwtUser
+     **/
+    JwtUser getUserByUsername(String userName);
 
     /**
      * @Author 老默
@@ -18,15 +26,15 @@ public interface ISysUserService extends IService<SysUser> {
      * @param userName
      * @return
      */
-    Page<UserPageVo> getUserPageVo(PageDTO dto,String userName);
-    
+    Page<UserPageVo> getUserPageVo(PageDTO dto,String userName,String account);
     
     /**
-     * @Author 老默
-     * @Description 
-     * @Date 2020/4/29 10:59
-     * @param: userName
-     * @return com.security.JwtUser
-     **/
-    JwtUser getUserByUsername(String userName);
+     *功能描述 保存用户信息
+     * @author 老默
+     * @date 2020/5/9
+     * @time 9:16
+     * @param dto
+     * @return boolean
+     */
+    boolean saveUser(UserSaveDto dto);
 }

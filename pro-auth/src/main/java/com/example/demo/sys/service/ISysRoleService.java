@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dto.PageDTO;
 import com.example.demo.sys.dto.RoleSaveDto;
 import com.example.demo.sys.entity.SysRole;
+import com.example.demo.sys.vo.RoleAllVo;
 import com.example.demo.sys.vo.RolePageVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -37,4 +40,14 @@ public interface ISysRoleService extends IService<SysRole> {
      * @return boolean
      */
     boolean saveRole(RoleSaveDto dto);
+
+    /**
+     *功能描述 获取所有角色信息
+     * @author 老默
+     * @date 2020/5/9
+     * @time 9:51
+     * @param
+     * @return java.util.List<com.example.demo.sys.vo.RoleAllVo>
+     */
+    List<RoleAllVo> getRoleAll();
 }

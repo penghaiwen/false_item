@@ -31,21 +31,25 @@ public class SysUserController {
 
     @GetMapping("get/list")
     @ApiOperation(value = "获取用户管理分页列表数据",notes = "老默",response = UserPageVo.class)
-    public RestBean getList(PageDTO dto, @ApiParam(value = "用户姓名") String userName){
-        return RestBean.ok(sysUserService.getUserPageVo(dto,userName));
+    public RestBean getList(PageDTO dto, @ApiParam(value = "用户姓名") String nickName,@ApiParam(value = "账号") String account){
+        return RestBean.ok(sysUserService.getUserPageVo(dto,nickName,account));
     }
 
     @PostMapping("save")
     @ApiOperation(value = "保存用户信息",notes = "老默",response = RestBean.class)
     public RestBean save(UserSaveDto dto){
-        return RestBean.ok();
+        return RestBean.ok(sysUserService.saveUser(dto));
     }
 
 
     @DeleteMapping("delete")
     @ApiOperation(value = "删除用户信息",notes = "老默",response = RestBean.class)
     public RestBean delete(@ApiParam(value = "用户ID")Long id){
-        return RestBean.ok();
+        return RestBean.ok(sysUserService.removeById(id));
     }
+
+
+
+
 
 }

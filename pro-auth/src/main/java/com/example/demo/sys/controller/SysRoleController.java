@@ -4,6 +4,7 @@ package com.example.demo.sys.controller;
 import com.dto.PageDTO;
 import com.example.demo.sys.dto.RoleSaveDto;
 import com.example.demo.sys.service.ISysRoleService;
+import com.example.demo.sys.vo.RoleAllVo;
 import com.example.demo.sys.vo.RolePageVo;
 import com.exception.RestBean;
 import io.swagger.annotations.Api;
@@ -49,5 +50,12 @@ public class SysRoleController {
     @ApiOperation(value = "删除角色",notes = "老默",response = RestBean.class)
     public RestBean delRole(@Valid @ApiParam(value = "角色id",required = true)Long id){
         return RestBean.ok(sysRoleService.removeById(id));
+    }
+
+
+    @GetMapping("get/all_list")
+    @ApiOperation(value = "获取所有角色数据",notes = "老默",response = RoleAllVo.class)
+    public RestBean getAllList(){
+        return RestBean.ok(sysRoleService.getRoleAll());
     }
 }

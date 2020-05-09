@@ -10,8 +10,11 @@ public class UserSaveDto {
     @ApiModelProperty(value = "编号")
     private Long id;
 
-    @ApiModelProperty(value = "用户名")
-    private String name;
+    @ApiModelProperty(value = "用户名（账号）")
+    private String account;
+
+    @ApiModelProperty(value = "用户姓名")
+    private String nickName;
 
     @ApiModelProperty(value = "用户类型（0 管理员 1专员）")
     private Integer userType;

@@ -7,7 +7,7 @@
           r.`name` as roleName,
           GROUP_CONCAT(rm.`menu_id`) AS menuIds,
           r.`create_time`,
-          u.`name` createBy
+          u.`nick_name` createBy
 
         FROM
           sys_role r
@@ -22,5 +22,16 @@
             </if>
         </where>
         GROUP BY r.id
+    </select>
+
+
+    <select id="getRoleAll" resultType="com.example.demo.sys.vo.RoleAllVo">
+        SELECT
+            r.id,
+            r.`name` as roleName
+        FROM
+            sys_role r
+        where
+            r.`delete_flag` = 0
     </select>
 </mapper>

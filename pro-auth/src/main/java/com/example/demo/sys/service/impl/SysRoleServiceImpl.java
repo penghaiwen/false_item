@@ -8,6 +8,7 @@ import com.example.demo.sys.mapper.SysRoleMapper;
 import com.example.demo.sys.service.ISysRoleMenuService;
 import com.example.demo.sys.service.ISysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.sys.vo.RoleAllVo;
 import com.example.demo.sys.vo.RolePageVo;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             sysRoleMenuService.saveBatchRoleMenu(role.getId(),dto.getMenuIds());
         }
         return b;
+    }
+
+    @Override
+    public List<RoleAllVo> getRoleAll() {
+        return baseMapper.getRoleAll();
     }
 }
