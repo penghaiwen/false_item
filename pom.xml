@@ -7,6 +7,8 @@
         <module>admin</module>
         <module>common</module>
         <module>pro-auth</module>
+        <module>flowable</module>
+        <module>flowable-modeler</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

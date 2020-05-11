@@ -1,0 +1,60 @@
+flowable:
+  common:
+    app:
+  #      idm-url: ${bath.path}/idm
+  #      tenant-id: 1
+  database-schema-update: true
+  idm:
+    app:
+      admin:
+        first-name: admin
+        last-name: 车资道管理员
+        password: czd
+        user-id: czd
+  modeler:
+    app:
+      rest-enabled: true
+  process:
+    definition-cache-limit: 1
+  rest:
+    app:
+      authentication-mode: verify-privilege
+  async-executor-activate: false
+  form:
+    enabled: false
+  dmn:
+    enabled: false
+  cmmn:
+    enabled: false
+  app:
+    enabled: false
+mybatis:
+  config-location: classpath:/META-INF/mybatis-config.xml
+  configuration-properties:
+    blobType: BLOB
+    boolValue: true
+    prefix: ''
+  mapper-locations: classpath:/META-INF/modeler-mybatis-mappings/*.xml
+server:
+  port: 4444
+  servlet:
+    context-path: /flow
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 10
+      max-active: 40
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      min-evictable-idle-time-millis: 300000
+      min-idle: 5
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      url: jdbc:mysql://localhost:3306/pro?useSSL=false&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      validation-query: SELECT 'x'
