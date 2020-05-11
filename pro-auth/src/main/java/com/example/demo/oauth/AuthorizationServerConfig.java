@@ -4,6 +4,7 @@ import com.example.demo.oauth.translator.WebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,9 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 
 @Configuration
@@ -29,8 +28,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     WebResponseExceptionTranslator webResponseExceptionTranslator;
 
-    @Autowired(required = false)
-    TokenStore inMemoryTokenStore;
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
+
+//    @Autowired(required = false)
+//    TokenStore inMemoryTokenStore;
     // 指定密码的加密方式
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -58,7 +60,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(inMemoryTokenStore)
+        endpoints.tokenStore(new RedisTokenStore(redisConnectionFactory))
                 //身份验证管理
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
