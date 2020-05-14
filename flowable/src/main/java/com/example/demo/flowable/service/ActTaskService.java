@@ -9,10 +9,12 @@ public interface ActTaskService {
      * @date 2020/5/11
      * @time 18:01
      * @param procDefKey 流程实例
-     * @param businessId
-     * @param vars
-     * @param assignee
+     * @param businessId 业务编号
+     * @param vars 参数
+     * @param assignee 下一审核人
      * @return java.lang.String
      */
     String startProcess(String procDefKey, String businessId, Map<String, Object> vars, Long assignee);
+
+
 }
