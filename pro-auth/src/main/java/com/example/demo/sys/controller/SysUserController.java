@@ -9,9 +9,12 @@ import com.exception.RestBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -24,6 +27,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/api/sys/sys_user")
 @Api(tags = "用户管理")
+@Validated
 public class SysUserController {
 
     @Resource
@@ -49,7 +53,13 @@ public class SysUserController {
     }
 
 
-
+    @PutMapping("update/pwd")
+    @ApiOperation(value = "修改密码",notes = "",response = RestBean.class)
+    public RestBean updatePwd(@ApiParam(value = "用户Id",required = true)@NotNull Long userId,
+                              @ApiParam(value = "",required = true)@NotBlank String oldPwd,
+                              @ApiParam(value = "",required = true)@NotNull String newPwd){
+        return RestBean.ok();
+    }
 
 
 }
