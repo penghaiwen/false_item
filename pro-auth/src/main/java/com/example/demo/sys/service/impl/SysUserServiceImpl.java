@@ -10,17 +10,25 @@ import com.example.demo.sys.service.ISysUserService;
 import com.example.demo.sys.vo.UserInfoVo;
 import com.example.demo.sys.vo.UserPageVo;
 import com.exception.RestException;
+import com.redis.DelayingQueueService;
+import com.redis.dto.Message;
 import com.security.JwtUser;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SysUserServiceImpl  extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
-
+    @Resource
+    private DelayingQueueService delayingQueueService;
     @Override
     public JwtUser getUserByUsername(String userName) {
         SysUser user= baseMapper.getUserByUsername(userName);
@@ -64,5 +72,21 @@ public class SysUserServiceImpl  extends ServiceImpl<SysUserMapper, SysUser> imp
     @Override
     public UserInfoVo getUserInfoByUserId(Long id) {
         return baseMapper.getUserInfoByUserId(id);
+    }
+
+    @Override
+    public void sendMessage(String msg, long delay,String channel) {
+
+        String seqId = UUID.randomUUID().toString();
+        Message message = new Message();
+        //时间戳默认为毫秒 延迟5s即为 5*1000
+        long time = System.currentTimeMillis();
+        LocalDateTime dateTime = Instant.ofEpochMilli(time).atZone(ZoneOffset.ofHours(8)).toLocalDateTime();
+        message.setDelayTime(time + (delay * 1000));
+        message.setCreateTime(dateTime);
+        message.setBody(msg);
+        message.setId(seqId);
+        message.setChannel(channel);
+        delayingQueueService.push(message);
     }
 }

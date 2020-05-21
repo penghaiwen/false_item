@@ -158,6 +158,11 @@
             <artifactId>ooxml-schemas</artifactId>
             <version>1.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
         <!--Excel生成end-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

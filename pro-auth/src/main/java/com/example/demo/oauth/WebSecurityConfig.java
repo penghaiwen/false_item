@@ -3,13 +3,11 @@ package com.example.demo.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -55,11 +53,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/*.html",
                 "/favicon.ico",
                 "/**/*.html",
-                "/aaa/get"
+                "/test/**"
         );
         /**
          * 请求登录的地址
          */
-        web.ignoring().antMatchers(HttpMethod.POST, "/**/login");
+        web.ignoring().antMatchers(HttpMethod.POST, "/**/login","/test/**");
     }
 }

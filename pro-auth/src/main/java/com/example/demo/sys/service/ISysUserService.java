@@ -48,4 +48,6 @@ public interface ISysUserService extends IService<SysUser> {
      * @return com.example.demo.sys.vo.UserInfoVo
      */
     UserInfoVo getUserInfoByUserId(Long id);
+
+    void sendMessage(String msg,long delay, String channel);
 }
