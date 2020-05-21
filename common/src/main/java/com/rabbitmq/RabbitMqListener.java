@@ -1,14 +1,12 @@
 package com.rabbitmq;
 
 import com.dto.Order;
-import com.redis.dto.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import java.nio.channels.Channel;
 import java.util.Date;
 
 @Component
