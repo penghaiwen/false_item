@@ -10,6 +10,6 @@ import com.generator.CodeGenerator;
  **/
 public class Generator {
     public static void main(String[] args) {
-        CodeGenerator.generator("/pro-auth","sys","1","sys_menu");
+        CodeGenerator.generator("/admin","order","1","goods_info");
     }
 }

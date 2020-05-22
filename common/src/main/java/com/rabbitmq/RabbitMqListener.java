@@ -16,7 +16,7 @@ import java.util.Date;
 public class RabbitMqListener {
 
     @RabbitListener(queues = {RabbitmqConfig.ORDER_QUEUE_NAME})
-    public void orderDelayQueue(Order order) {
+    public void orderQueue(Order order) {
         log.info("###########################################");
         log.info("【orderDelayQueue 监听的消息】 - 【消费时间】 - [{}]- 【订单内容】 - [{}]",  new Date(), order.toString());
         if(order.getOrderStatus() == 0) {
@@ -29,6 +29,8 @@ public class RabbitMqListener {
         }
         log.info("###########################################");
     }
+
+
 
 
 }

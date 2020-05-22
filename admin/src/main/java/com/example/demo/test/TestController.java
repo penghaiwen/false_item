@@ -25,19 +25,20 @@ public class TestController {
 
     @PostMapping("user")
     public RestBean test(){
-        Order order1 = new Order();
-        order1.setOrderStatus(0);
-        order1.setOrderId("123456");
-        order1.setOrderName("小米6");
+        for (int i =0 ;i<10 ;i++){
+            Order order1 = new Order();
+            order1.setOrderStatus(0);
+            order1.setOrderId("no"+i);
+            order1.setOrderName("小米"+i);
+            rabbitMqService.send(order1);
+        }
+        return RestBean.ok();
+    }
 
-        Order order2 = new Order();
-        order2.setOrderStatus(1);
-        order2.setOrderId("456789");
-        order2.setOrderName("小米8");
 
+    @PostMapping("confirm")
+    public RestBean confirm(){
 
-        rabbitMqService.send(order1);
-        rabbitMqService.send(order2);
         return RestBean.ok();
     }
 }
