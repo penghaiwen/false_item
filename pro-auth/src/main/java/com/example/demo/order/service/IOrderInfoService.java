@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-05-22
  */
 public interface IOrderInfoService extends IService<OrderInfo> {
-
+    void saveOrderInfo(OrderInfo info);
 }

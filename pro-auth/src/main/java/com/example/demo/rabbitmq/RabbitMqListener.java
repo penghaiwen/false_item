@@ -1,12 +1,14 @@
-package com.rabbitmq;
+package com.example.demo.rabbitmq;
 
-import com.dto.Order;
+import com.example.demo.order.entity.OrderInfo;
+import com.example.demo.order.service.IOrderInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 @Component
@@ -14,19 +16,15 @@ import java.util.Date;
 @EnableRabbit
 @Configuration
 public class RabbitMqListener {
+    @Resource
+    private IOrderInfoService orderInfoService;
 
-    @RabbitListener(queues = {RabbitmqConfig.ORDER_QUEUE_NAME})
-    public void orderQueue(Order order) {
+
+    @RabbitListener(queues = {RabbitmqConfig.pay_order_delay_queue})
+    public void orderQueue(OrderInfo order) {
         log.info("###########################################");
         log.info("【orderDelayQueue 监听的消息】 - 【消费时间】 - [{}]- 【订单内容】 - [{}]",  new Date(), order.toString());
-        if(order.getOrderStatus() == 0) {
-            order.setOrderStatus(2);
-            log.info("【该订单未支付，取消订单】" + order.toString());
-        } else if(order.getOrderStatus() == 1) {
-            log.info("【该订单已完成支付】");
-        } else if(order.getOrderStatus() == 2) {
-            log.info("【该订单已取消】");
-        }
+        log.info("订单号：{},支付超时",order.getOrderNo());
         log.info("###########################################");
     }
 
